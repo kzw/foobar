@@ -11,6 +11,9 @@ spec:
     namespace: default
   project: default
   source:
+    helm:
+      valueFiles:
+      - values.yaml
     path: charts/foo
     repoURL: https://github.com/kzw/foobar
     targetRevision: main
