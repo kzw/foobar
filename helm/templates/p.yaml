@@ -1,25 +1,10 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: Pod
+apiVersion: v1
 metadata:
-  name: prometheus
-  namespace: default
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
+  name: foo
 spec:
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: default
-  project: default
-  source:
-    chart: prometheus
-    helm:
-      values: |
-        pushgateway:
-          enabled: false
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 15.6.0
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-
+  containers:
+  - name: app
+    image: public.ecr.aws/docker/library/bash
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do echo $(date -u) >> /tmp/out.txt; sleep 5; done"]
