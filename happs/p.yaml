@@ -1,0 +1,10 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: foo
+spec:
+  containers:
+  - name: app
+    image: public.ecr.aws/docker/library/bash
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do echo $(date -u) >> /tmp/out.txt; sleep 5; done"]
