@@ -11,7 +11,7 @@ spec:
     namespace: default
   project: default
   source:
-    path: happs/
+    path: happs/apps/foo
     repoURL: https://github.com/kzw/foobar
     targetRevision: main
   syncPolicy:
