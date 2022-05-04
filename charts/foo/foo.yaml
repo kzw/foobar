@@ -1,11 +1,21 @@
-kind: Pod
-apiVersion: v1
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: foo
-  namespace: default
+  labels:
+    app: foo
 spec:
-  containers:
-  - name: app
-    image: public.ecr.aws/docker/library/bash
-    command: ["/bin/sh"]
-    args: ["-c", "while true; do echo $(date -u) >> /tmp/out.txt; sleep 5; done"]
+  replicas: 1
+  selector:
+    matchLabels:
+      app: foo
+  template:
+    metadata:
+      labels:
+        app: foo
+    spec:
+      containers:
+      - name: foo
+        image: public.ecr.aws/docker/library/bash
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo $(date -u) >> /tmp/out.txt; sleep 5; done"]
