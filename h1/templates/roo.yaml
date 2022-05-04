@@ -13,6 +13,8 @@ spec:
   source:
     helm:
       releaseName: v1
+      valueFiles:
+        - other-values.yaml
     path: charts/foo
     repoURL: https://github.com/kzw/foobar
     targetRevision: main
